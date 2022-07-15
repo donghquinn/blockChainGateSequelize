@@ -1,0 +1,8 @@
+node_modules
+mysql-data
+sequelize_init
+.env
+docker-compose.yml
+src1
+src2/config
+src2/.env

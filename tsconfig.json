@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "lib": ["ES2022"],
+    "allowJs": false,
+    "strict": true, 
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "baseUrl": "src1",
+  },
+  "include":["src1/**/*"],
+  "exclude":["node_modules"],
+  "ts-node":{
+    "files": true
+  }
+  
+}
