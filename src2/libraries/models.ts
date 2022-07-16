@@ -77,9 +77,15 @@ freezeTableName: true
 
 // Sync the model to the Database
 async function sync(sequelize: Sequelize) {
-  await sequelize.sync();
-  const test = Test.create();
-  console.log(Test instanceof Test);
+  try {
+    await sequelize.sync();
+    const test = Test.create();
+    console.log(Test instanceof Test);
+  } catch (err) {
+    if (err instanceof Error) {
+      throw err;
+    }
+  }
 };
 
 // Run
