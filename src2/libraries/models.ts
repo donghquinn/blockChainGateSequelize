@@ -1,7 +1,8 @@
 import { Model, Sequelize, DataTypes } from 'sequelize';
 import { config } from 'dotenv';
+import { timeStamp } from 'console';
 
-config({ path: '../'});
+config({ path: '../../'});
 // import { modelInit } from './dbInit';
 
 // connect to the Database
@@ -63,10 +64,62 @@ Test.init ({
   auth_key: {
     type: DataTypes.STRING(256),
     allowNull: false,
-    comment: '인증키',
+    comment: '클라이언트가 보낼 단순 조회용 키',
     defaultValue: 'pop',
   },
 
+  cert_key: {
+    type: DataTypes.STRING(256),
+    allowNull: false,
+    comment: '클라이언트가 보낼 JWT 암호화 키',
+    defaultValue: 'st',
+    unique: true
+  },
+
+  cert_key_callback: {
+    type: DataTypes.STRING(256),
+    allowNull: false,
+    comment: '클라이언트에게 보낼 JWT 암호화 키'
+  },
+
+  income_callback: {
+    type: DataTypes.STRING(512),
+    allowNull: false,
+    comment: '입금알림 콜백 주소'
+  },
+
+  outcome_callback_tx: {
+    type: DataTypes.STRING(512),
+    allowNull: true,
+    defaultValue: null,
+    comment: '출금 TXID 콜백 주소',
+  },
+
+  outcome_callback: {
+    type: DataTypes.STRING(512),
+    allowNull: true,
+    defaultValue: null,
+    comment: '출금알림 콜백 주소'
+  },
+
+  memo: {
+    type: DataTypes.STRING(512),
+    allowNull: true,
+    defaultValue: null,
+    comment: '메모'
+  },
+
+  created: {
+    type: DataTypes.DATE,
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    comment: '생성 타임스탬프'
+  },
+
+  updated: {
+    type: DataTypes.DATE,
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP'),
+    comment: '수정 타임스탬프'
+  }
   
 }, { 
 sequelize,
@@ -85,3 +138,4 @@ async function sync(sequelize: Sequelize) {
 // Run
 await auth(sequelize);
 await sync(sequelize);
+
