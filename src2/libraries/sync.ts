@@ -1,6 +1,7 @@
 // Sync the model to the Database
 import { Sequelize } from 'sequelize';
 
+// sync the Model Object with RDB Table.
 export async function sync(sequelize: Sequelize) {
   try {
     // You should input 'force: true' option when You already have columns in the table.

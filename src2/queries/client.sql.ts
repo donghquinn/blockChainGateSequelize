@@ -8,7 +8,6 @@ import { Test, initiate, initSequelize } from '../libraries';
  * TODO: Sequelize 에서 prepared Statement 사용하는 방법 찾기
  * 참고 : https://stackoverflow.com/questions/49242772/how-to-create-prepared-statements-in-sequelize
  */
-
  export async function findCertKey() { 
   try {
     await Test.findOne({

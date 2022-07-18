@@ -10,3 +10,4 @@ export const initSequelize = new Sequelize(process.env.DATABASE, process.env.USE
   logging: console.log
 });
 
+

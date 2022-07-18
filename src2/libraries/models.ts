@@ -117,16 +117,3 @@ export function initiate (sequelize: Sequelize) {
     timestamps: false
   });
 };
-
-export async function findCertKey() { 
-  try {
-    await Test.findOne({
-      attributes: ['cert_key'],
-      where: { client_id: '(?)'}
-    })
-  } catch (err) {
-    if (err instanceof Error) {
-      throw err;
-    }
-  }
-}

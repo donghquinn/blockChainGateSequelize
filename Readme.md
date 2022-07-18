@@ -17,9 +17,12 @@ Model.destroy()      ===         DELETE A FROM ...
 
 
 ----------------------------------- 예시 ----------------------------------------
+
+
 import { Sequelize, Datatypes, Op, Models } from 'sequelize';
 
 // extends Model Class
+
 class Models extends Model {}
 
 // Init Model : Which means defining the columns.
@@ -36,9 +39,11 @@ Models.init {
 };
 
 //Syncronize the Models Object with RDB's Table.
+
 await Models.sync();
 
 // SELECT first_One FROM test WHERE Optional_Cond = 13 OR Optional_Cond = 4
+
 await Models.findOne({
   attributes: ['first_One'],
   where: {
@@ -47,4 +52,7 @@ await Models.findOne({
     }
   }
 })
+
+
+
 ------------------------------------------------------------------------------------
