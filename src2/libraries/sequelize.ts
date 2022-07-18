@@ -9,5 +9,3 @@ export const initSequelize = new Sequelize(process.env.DATABASE, process.env.USE
   dialect: 'mariadb',
   logging: console.log
 });
-
-

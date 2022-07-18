@@ -1,5 +1,5 @@
 import { Model, Op } from 'sequelize';
-import { Test, initiate, initSequelize } from '../libraries';
+import { Client_info } from '../libraries';
 // Op means Operators.
 
 /**
@@ -10,7 +10,7 @@ import { Test, initiate, initSequelize } from '../libraries';
  */
  export async function findCertKey() { 
   try {
-    await Test.findOne({
+    await Client_info.findOne({
       attributes: ['cert_key'],
       where: { client_id: '(?)'}
     });
@@ -26,7 +26,7 @@ import { Test, initiate, initSequelize } from '../libraries';
  */
 export async function findauthByKey () {
   try { 
-    await Test.findOne({
+    await Client_info.findOne({
       attributes: ['client_id'],
       replacements: { auth_key: '(?)' },
       });
@@ -39,7 +39,7 @@ export async function findauthByKey () {
 
 export async function findCallBackInfo() {
   try {
-    await Test.findOne ({
+    await Client_info.findOne ({
       attributes: ['cert_key_callback', 'income_callback', 'outcome_callback', 'outcome_callback_tx'],
       replacements: { client_id: '?' }
     });

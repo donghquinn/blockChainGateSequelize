@@ -1,10 +1,10 @@
 import { Sequelize } from 'sequelize/types';
-import { sync, Test, initSequelize, initiate} from './libraries';
+import { sync, initSequelize, client_init } from './libraries';
 import { findCertKey } from './queries';
 
 
 // model initiate\
-initiate(initSequelize);
+client_init(initSequelize);
 
 // syncing start
 await sync(initSequelize);

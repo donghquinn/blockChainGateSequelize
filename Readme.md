@@ -1,8 +1,13 @@
 Sequelize 사용.
 
+1. Model Init
+2. Model Sync
+3. Query or Whatever You want
 
-prepared Statement: 기본적으로 Sequelize 안에 구현되어 있다.
-Sequelize 내에 Operators 가 내장되어 있으며, Op 라는 클래스로 구현되어 있다.
+
+* prepared Statement: 기본적으로 Sequelize 안에 구현되어 있다.
+
+* Sequelize 내에 Operators 가 내장되어 있으며, Op 라는 클래스로 구현되어 있다.
 
 
    객체                           관계형 데이터베이스
@@ -21,11 +26,14 @@ Model.destroy()      ===         DELETE A FROM ...
 
 import { Sequelize, Datatypes, Op, Models } from 'sequelize';
 
+
 // extends Model Class
 
 class Models extends Model {}
 
+
 // Init Model : Which means defining the columns.
+
 Models.init {
   columen1 {
     type: Datatypes.STRING,
@@ -38,9 +46,11 @@ Models.init {
   timestamp: false
 };
 
+
 //Syncronize the Models Object with RDB's Table.
 
 await Models.sync();
+
 
 // SELECT first_One FROM test WHERE Optional_Cond = 13 OR Optional_Cond = 4
 
