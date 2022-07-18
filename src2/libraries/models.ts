@@ -1,13 +1,12 @@
-import { Model, Sequelize, DataTypes } from 'sequelize';
+import { Model, Sequelize, DataTypes, literal, CreationOptional } from 'sequelize';
 import { config } from 'dotenv';
-import { timeStamp } from 'console';
 
 config({ path: '../../'});
 // import { modelInit } from './dbInit';
 
 // connect to the Database
 const sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.env.PASSWORD, {
-  host:process.env.HOST,
+  host: process.env.HOST,
   port: Number(process.env.PORT),
   dialect: 'mariadb',
   logging: console.log
@@ -31,24 +30,32 @@ async function auth(sequelize: Sequelize){
 
 // generate Test class extend from 'Model' class of Sequelize
 export class Test extends Model {
-  // public uid: number;
-  // public name: string;
-  // public client_id: number;
-  // public auth_key: string;
+  declare uid: CreationOptional<number>;
+  declare name: string;
+  declare client_id: number;
+  declare auth_key: string;
+  declare cert_key: string;
+  declare cert_key_callback: string;
+  declare income_callback: string;
+  declare outcome_callback_tx: string | null;
+  declare outcome_callback: string | null;
+  declare memo: string | null;
+  declare created: Date;
+  declare updated: Date;
 };
 
 
 // Model Initiating : which means generating Tables on the DataBase
 Test.init ({
   uid: {
-    type: DataTypes.TINYINT,
+    type: DataTypes.BIGINT.UNSIGNED,
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
 
   client_id: {
-    type: DataTypes.TINYINT,
+    type: DataTypes.BIGINT.UNSIGNED,
     allowNull: false,
     comment: '클라이언트 ID',
     defaultValue: 1,
@@ -79,13 +86,15 @@ Test.init ({
   cert_key_callback: {
     type: DataTypes.STRING(256),
     allowNull: false,
-    comment: '클라이언트에게 보낼 JWT 암호화 키'
+    comment: '클라이언트에게 보낼 JWT 암호화 키',
+    defaultValue: "1",
   },
 
   income_callback: {
     type: DataTypes.STRING(512),
     allowNull: false,
-    comment: '입금알림 콜백 주소'
+    comment: '입금알림 콜백 주소',
+    defaultValue: '1'
   },
 
   outcome_callback_tx: {
@@ -111,29 +120,34 @@ Test.init ({
 
   created: {
     type: DataTypes.DATE,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    // allowNull: false,
+    // defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
     comment: '생성 타임스탬프'
   },
 
   updated: {
     type: DataTypes.DATE,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP'),
+    // allowNull: false,
+    // defaultValue: sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
     comment: '수정 타임스탬프'
   }
   
 }, { 
-sequelize,
-tableName: 'client_info',
-modelName: 'Test',
-freezeTableName: true
+  sequelize,
+  tableName: 'client_info',
+  modelName: 'Test',
+  freezeTableName: true,
+  charset: 'utf8mb4',
 })
 
 // Sync the model to the Database
 async function sync(sequelize: Sequelize) {
   try {
-    await sequelize.sync();
+    // You should input 'force: true' option when You already have columns in the table.
+    await sequelize.sync({ force: true });
     const test = Test.create();
-    console.log(Test instanceof Test);
+    console.log("@@@@@@@@@@@@@@@@@@@@");
+    console.log('Syncing Table completed!');
   } catch (err) {
     if (err instanceof Error) {
       throw err;
