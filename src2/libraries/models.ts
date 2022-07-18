@@ -12,6 +12,8 @@ const sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.
   logging: console.log
 });
 
+
+
 // Check the connection.
 async function auth(sequelize: Sequelize){
   try {
@@ -119,16 +121,16 @@ Test.init ({
   },
 
   created: {
-    type: DataTypes.DATE,
-    // allowNull: false,
-    // defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+    type: DataTypes.DATEONLY,
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
     comment: '생성 타임스탬프'
   },
 
   updated: {
     type: DataTypes.DATE,
-    // allowNull: false,
-    // defaultValue: sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
     comment: '수정 타임스탬프'
   }
   
@@ -138,14 +140,16 @@ Test.init ({
   modelName: 'Test',
   freezeTableName: true,
   charset: 'utf8mb4',
-})
+  engine: 'InnoDB',
+  timestamps: false,
+});
 
 // Sync the model to the Database
 async function sync(sequelize: Sequelize) {
   try {
     // You should input 'force: true' option when You already have columns in the table.
     await sequelize.sync({ force: true });
-    const test = Test.create();
+    //const test = Test.create();
     console.log("@@@@@@@@@@@@@@@@@@@@");
     console.log('Syncing Table completed!');
   } catch (err) {
