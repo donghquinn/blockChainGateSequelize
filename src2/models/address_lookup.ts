@@ -52,8 +52,9 @@ export function addressLookupInit (sequelize: Sequelize) {
     modelName: 'AddressLookupInfo',
     tableName: 'address_lookup_info',
     freezeTableName: true,
+    timestamps: false,
     engine: 'InnoDB',
     charset: 'utf8mb4',
-    collate: 'tf8mb4_bin',
+    collate: 'utf8mb4_bin',
   })
 }

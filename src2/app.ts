@@ -1,10 +1,29 @@
-import { Sequelize } from 'sequelize/types';
-import { sync, initSequelize, client_init } from './libraries';
-import { findCertKey } from './queries';
+import { sync, initSequelize, authenticate } from './libraries';
+import { 
+  clientInit,
+  addressLookupInit,
+  addressSignInit,
+  block_init,
+  contract_init,
+  outRequestInfoInit,
+  inNotifyInit,
+  outNotifyInit,
+  outRequestFailInit,
+} from './models';
+import { findCertKey, findCallBackInfo, findauthByKey, findLatestNonceByFrom } from './queries';
 
+await authenticate(initSequelize);
 
 // model initiate\
-client_init(initSequelize);
+clientInit(initSequelize);
+addressLookupInit(initSequelize);
+addressSignInit(initSequelize);
+block_init(initSequelize);
+contract_init(initSequelize);
+outRequestInfoInit(initSequelize);
+outNotifyInit(initSequelize);
+outRequestFailInit(initSequelize);
+inNotifyInit(initSequelize);
 
 // syncing start
 await sync(initSequelize);
@@ -12,3 +31,5 @@ await sync(initSequelize);
 //query
 // await findCertKey(Test);
 await findCertKey();
+
+await findLatestNonceByFrom();

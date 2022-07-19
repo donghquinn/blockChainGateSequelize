@@ -68,6 +68,6 @@ export function block_init (sequelize: Sequelize) {
     charset: 'utf8mb4',
     engine: 'InnoDB',
     timestamps: false,
-    collate: 'tf8mb4_bin'
+    collate: 'utf8mb4_bin'
   })
 };

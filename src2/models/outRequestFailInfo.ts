@@ -3,7 +3,7 @@ import { OutRequest } from './model';
 
 export class OutRequestFailInfo extends OutRequest {}
 
-export function outRequestFailInfo (sequelize: Sequelize) {
+export function outRequestFailInit (sequelize: Sequelize) {
   OutRequestFailInfo.init({
     uid: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -125,6 +125,7 @@ export function outRequestFailInfo (sequelize: Sequelize) {
     freezeTableName: true,
     engine: 'InnoDB',
     charset: 'utf8mb4',
-    collate: 'tf8mb4_bin',
+    collate: 'utf8mb4_bin',
+    timestamps: false,
   })
 }

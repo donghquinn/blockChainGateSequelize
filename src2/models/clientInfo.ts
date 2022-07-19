@@ -1,7 +1,7 @@
 import { DataTypes, Sequelize } from 'sequelize';
 import { Uid } from './model';
 
-export class Client_info extends Uid {
+export class ClientInfo extends Uid {
   declare name: string;
   declare client_id: number;
   declare auth_key: string;
@@ -13,8 +13,8 @@ export class Client_info extends Uid {
 }
 
 // Model Initiating : which means generating Tables on the DataBase
-export function client_init (sequelize: Sequelize) { 
-  Client_info.init ({
+export function clientInit (sequelize: Sequelize) { 
+  ClientInfo.init ({
     uid: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
@@ -107,6 +107,6 @@ export function client_init (sequelize: Sequelize) {
     charset: 'utf8mb4',
     engine: 'InnoDB',
     timestamps: false,
-    collate: 'tf8mb4_bin',
+    collate: 'utf8mb4_bin',
   });
 };

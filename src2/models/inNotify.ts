@@ -5,7 +5,7 @@ import { DataTypes, Sequelize } from 'sequelize';
 export class InNotifyInfo extends Notify {}
 
 // initiate the Model
-export function inNotifyInfo (sequelize: Sequelize) {
+export function inNotifyInit (sequelize: Sequelize) {
   InNotifyInfo.init({
     uid: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -106,6 +106,7 @@ export function inNotifyInfo (sequelize: Sequelize) {
     freezeTableName: true,
     engine: 'InnoDB',
     charset: 'utf8mb4',
-    collate: 'utf8mb4_bin'
+    collate: 'utf8mb4_bin',
+    timestamps: false,
   })
 }

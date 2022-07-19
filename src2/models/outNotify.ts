@@ -4,8 +4,8 @@ import { Notify } from './model';
 export class OutNotifyInfo extends Notify {}
 
 
-export function outNotifyInfo (sequelize: Sequelize) {
-  OutNotifyInfo.init({
+export function outNotifyInit (sequelize: Sequelize) {
+  OutNotifyInfo.init ({
     uid: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
@@ -105,6 +105,7 @@ export function outNotifyInfo (sequelize: Sequelize) {
     freezeTableName: true,
     engine: 'InnoDB',
     charset: 'utf8mb4',
-    collate: 'utf8mb4_bin'
+    collate: 'utf8mb4_bin',
+    timestamps: false,
   })
 }

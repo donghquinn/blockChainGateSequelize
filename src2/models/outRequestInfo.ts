@@ -1,4 +1,4 @@
-import { DataTypes, Sequelize } from 'sequelize/types';
+import { DataTypes, Sequelize } from 'sequelize';
 import { OutRequest } from './model';
 
 export class OutRequestInfo extends OutRequest {}
@@ -125,6 +125,7 @@ export function outRequestInfoInit (sequelize: Sequelize) {
     freezeTableName: true,
     engine: 'InnoDB',
     charset: 'utf8mb4',
-    collate: 'tf8mb4_bin',
+    collate: 'utf8mb4_bin',
+    timestamps: false,
   })
 }
