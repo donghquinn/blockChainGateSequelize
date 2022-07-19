@@ -41,6 +41,8 @@ export async function findAllLookupAddress (params: Pick<AddressLookupInfo, 'add
 }
 
 // AddressLookupInfo 에서 뽑은 키들을 담은 객체를 파라미터로 담아, ClientInfo 모델과 Left Outer Join 으로 원하는 값을 추출해 낸다.
+
+// TODO LeftOuterJoin 구현하기
 export async function findAllLookupAddressWithCallbackInfo (params: Pick<AddressLookupInfo, 'address' | 'client_id' | 'in_notify' | 'out_notify'>) {
   // Associate Each Models.
   AddressLookupInfo.hasMany(ClientInfo, {foreignKey: 'client_id', as: 'C'})

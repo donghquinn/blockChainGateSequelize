@@ -14,7 +14,7 @@ import { findCertKey, findCallBackInfo, findauthByKey, findLatestNonceByFrom } f
 
 await authenticate(initSequelize);
 
-// model initiate\
+// models initiate
 clientInit(initSequelize);
 addressLookupInit(initSequelize);
 addressSignInit(initSequelize);
@@ -29,7 +29,5 @@ inNotifyInit(initSequelize);
 await sync(initSequelize);
 
 //query
-// await findCertKey(Test);
-await findCertKey();
 
 await findLatestNonceByFrom();
