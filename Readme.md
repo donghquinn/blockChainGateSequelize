@@ -10,13 +10,22 @@ Sequelize 사용.
 * Sequelize 내에 Operators 가 내장되어 있으며, Op 라는 클래스로 구현되어 있다.
 
 
+
    객체                           관계형 데이터베이스
+
   Model              ===             Table
 
 Model.findOne()      ===         SELECT A FROM ...
+
 Model.findAll()      ===        SELECT A,B,C FROM ...
+
 Model.update()       ===          UPDATE A 
+
 Model.destroy()      ===         DELETE A FROM ...
+
+
+
+
 
 
 
